@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_nav_graph"
+    app:startDestination="@id/nearbyRestaurantsFragments">
+    <fragment
+        android:id="@+id/nearbyRestaurantsFragments"
+        android:name="ca.qc.cgodin.restaurant.ui.fragments.NearbyRestaurantsFragments"
+        android:label="resto_nearby_fragment"
+        tools:layout="@layout/resto_nearby_fragment" />
+</navigation>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Restaurant</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="breaking_news_txt">Restaurents</string>
+    <string name="search_news_txt">Search news</string>
+    <string name="saved_news_txt">Saved news</string>
+    <string name="hello_breaking_news_fragment">Hello from Restaurents</string>
+    <string name="hello_saved_news_fragment">Hello from saved news fragment</string>
+    <string name="hello_search_news_fragment">Hello from search news fragment</string>
+    <string name="hello_article_fragment">Hello from article fragment</string>
+    <string name="cover_image_txt">"image "</string>
+    <string name="allNews">Chercher des articles</string>
+    <string name="chercher">Chercher</string>
+    <string name="RechercheArticle">Recherche article</string>
+    <string name="btnRechercher">Rechercher</string>
+
+
+
+</resources>
