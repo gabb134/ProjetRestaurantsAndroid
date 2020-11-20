@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/breakingNewsFragment"
-        android:icon="@drawable/ic_breaking_news"
-        android:title="@string/breaking_news_txt" />
+        android:id="@+id/nearbyRestaurantsFragments"
+        android:icon="@drawable/ic_baseline_restaurant_24"
+        android:title="@string/nerby_restaurants" />
     <item
-        android:id="@+id/savedNewsFragment"
+        android:id="@+id/savedRestaurantsFragments"
         android:icon="@drawable/ic_favorite"
-        android:title="@string/saved_news_txt" />
+        android:title="@string/Saved_restaurants" />
     <item
-        android:id="@+id/allNewsFragment"
+        android:id="@+id/allRestaurantsFragments"
         android:icon="@drawable/ic_search"
-        android:title="@string/search_news_txt" />
+        android:title="@string/Search_Restaurants" />
 </menu>

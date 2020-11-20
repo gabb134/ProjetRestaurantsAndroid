@@ -15,6 +15,9 @@
     <string name="btnRechercher">Rechercher</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nerby_restaurants">Nerby Restaurants</string>
+    <string name="Saved_restaurants">Saved Restaurants</string>
+    <string name="Search_Restaurants">Search Restaurants</string>
 
 
 </resources>
