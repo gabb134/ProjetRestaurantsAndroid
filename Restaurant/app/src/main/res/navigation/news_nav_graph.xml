@@ -22,4 +22,31 @@
             android:name="Result"
             app:argType="ca.qc.cgodin.restaurant.modeleSearch.Result" />
     </fragment>
+    <fragment
+        android:id="@+id/carteFragments"
+        android:name="ca.qc.cgodin.restaurant.ui.fragments.CarteFragments"
+        android:label="fragment_carte_fragments"
+        tools:layout="@layout/fragment_carte_fragments" >
+        <action
+            android:id="@+id/action_carteFragments_to_detailsRestoFragment"
+            app:destination="@id/detailsRestoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorisFragment"
+        android:name="ca.qc.cgodin.restaurant.ui.fragments.FavorisFragment"
+        android:label="@string/Favoris_fragment"
+        tools:layout="@layout/fragment_favoris" >
+        <action
+            android:id="@+id/action_favorisFragment_to_detailsRestoFragment"
+            app:destination="@id/detailsRestoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rechercheFragment"
+        android:name="ca.qc.cgodin.restaurant.ui.fragments.RechercheFragment"
+        android:label="@string/Recherche_fragment"
+        tools:layout="@layout/fragment_recherche" >
+        <action
+            android:id="@+id/action_rechercheFragment_to_detailsRestoFragment"
+            app:destination="@id/detailsRestoFragment" />
+    </fragment>
 </navigation>

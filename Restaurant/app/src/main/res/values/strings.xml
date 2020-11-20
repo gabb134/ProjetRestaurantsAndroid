@@ -4,8 +4,8 @@
     <string name="breaking_news_txt">Restaurents</string>
     <string name="search_news_txt">Search news</string>
     <string name="saved_news_txt">Saved news</string>
-    <string name="hello_breaking_news_fragment">Hello from Restaurents</string>
-    <string name="hello_saved_news_fragment">Hello from saved news fragment</string>
+    <string name="Favoris_fragment">Hello from favoris</string>
+    <string name="Recherche_fragment">Hello from recherche</string>
     <string name="hello_search_news_fragment">Hello from search news fragment</string>
     <string name="hello_article_fragment">Hello from article fragment</string>
     <string name="cover_image_txt">"image "</string>
@@ -15,9 +15,10 @@
     <string name="btnRechercher">Rechercher</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="nerby_restaurants">Nerby Restaurants</string>
-    <string name="Saved_restaurants">Saved Restaurants</string>
-    <string name="Search_Restaurants">Search Restaurants</string>
+    <string name="nerby_restaurants">Proche de moi</string>
+    <string name="Saved_restaurants">Les favoris</string>
+    <string name="Search_Restaurants">Recherche</string>
+    <string name="Carte_fragment">Map</string>
 
 
 </resources>

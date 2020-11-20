@@ -34,6 +34,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val repository = RestaurantRepository()
         val viewModelProviderFactory = RestoViewModelProviderFactory(repository)
         viewModel = ViewModelProvider(this,viewModelProviderFactory).get(RestoViewModel::class.java)
+
+
     }
 
     /**
