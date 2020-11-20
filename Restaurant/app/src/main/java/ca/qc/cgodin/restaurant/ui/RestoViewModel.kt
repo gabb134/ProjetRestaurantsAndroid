@@ -1,21 +1,20 @@
 package ca.qc.cgodin.restaurant.ui
 
-import android.media.Image
-import android.widget.Button
-import android.widget.ImageView
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ca.qc.cgodin.restaurant.modeleSearch.NearbySearch
-import ca.qc.cgodin.restaurant.modeleSearch.Photo
 import ca.qc.cgodin.restaurant.repository.RestaurantRepository
 import kotlinx.coroutines.launch
+import ca.qc.cgodin.restaurant.modeleDetail.Details
+
 
 class RestoViewModel(val restaurantRepository: RestaurantRepository)  : ViewModel() {
 
     val resto: MutableLiveData<NearbySearch> = MutableLiveData()
 
-    val photos: MutableLiveData<Photo> = MutableLiveData()
+    val details: MutableLiveData<Details> = MutableLiveData()
 
     init{
         getRestoNearby("1500")
@@ -25,6 +24,12 @@ class RestoViewModel(val restaurantRepository: RestaurantRepository)  : ViewMode
 
         resto.postValue(response.body())
     }
+
+    fun getDetailsResto(place_id: String) = viewModelScope.launch {
+        val response = restaurantRepository.getDetailsRestaurants(place_id)
+        details.postValue(response.body())
+    }
+
 
 
 

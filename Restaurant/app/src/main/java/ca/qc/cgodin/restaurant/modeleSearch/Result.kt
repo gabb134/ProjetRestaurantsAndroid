@@ -4,6 +4,7 @@ import ca.qc.cgodin.restaurant.modeleSearch.Geometry
 import ca.qc.cgodin.restaurant.modeleSearch.OpeningHours
 import ca.qc.cgodin.restaurant.modeleSearch.Photo
 import ca.qc.cgodin.restaurant.modeleSearch.PlusCode
+import java.io.Serializable
 
 data class Result(
     val business_status: String,
@@ -21,4 +22,4 @@ data class Result(
     val types: List<String>,
     val user_ratings_total: Int,
     val vicinity: String
-)
+) : Serializable

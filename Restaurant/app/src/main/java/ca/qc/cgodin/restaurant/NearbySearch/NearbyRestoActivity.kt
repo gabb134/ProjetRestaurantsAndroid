@@ -26,21 +26,5 @@ lateinit var viewModel: RestoViewModel
             val repository = RestaurantRepository()
             val viewModelProviderFactory = RestoViewModelProviderFactory(repository)
             viewModel = ViewModelProvider(this,viewModelProviderFactory).get(RestoViewModel::class.java)
-
-        var job: Job? = null
-        etRayon.addTextChangedListener() { editable ->
-            job?.cancel()
-            job = MainScope().launch {
-                //delay(SEARCH_NEWS_TIME_DELAY)
-                editable?.let {
-                    if(editable.toString().isNotEmpty()) {
-                        viewModel.getRestoNearby(editable.toString())
-                    }
-                }
-            }
-        }
-
-
-
     }
 }

@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cgodin.restaurant.R
 import ca.qc.cgodin.restaurant.modeleSearch.NearbySearch
@@ -26,7 +27,6 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
 
 
     private var nearbySearch: List<Result> = emptyList()
-    private lateinit var photoSearch: Photo
 
 
    // lateinit var viewModel: RestoViewModel
@@ -34,7 +34,7 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvNameResto: TextView = itemView.findViewById(R.id.tvTitle)
         val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
-     //   val etRayon: EditText = itemView.findViewById(R.id.etRayon)
+        val place_id: TextView = itemView.findViewById(R.id.place_id)
         val tvPhoneNumber: TextView = itemView.findViewById(R.id.tvPublishedAt)
         val tvAddress: TextView = itemView.findViewById(R.id.tvTitle)
         val tvImg: ImageView = itemView.findViewById(R.id.ivRestoImage)
@@ -48,15 +48,13 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
         return ViewHolder(view)
     }
 
-    private var onItemClickListener: ((Result) -> Unit)? = null
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         holder.itemView.apply {
             tvTitle.text = nearbySearch[position].name;
             tvPublishedAt.text = nearbySearch[position].rating.toString();
             tvSource.text = nearbySearch[position].vicinity;
-
-            //Log.i("MAINACTIVITY","SIZE ====== ${nearbySearch[position].place_id}")
+            place_id.text = nearbySearch[position].place_id;
 
 
             try {
@@ -68,12 +66,13 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
             }
             setOnClickListener {
                 onItemClickListener?.let { it(nearbySearch[position]) }
-
             }
 
 
         }
     }
+
+    private var onItemClickListener: ((Result) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Result) -> Unit) {
         onItemClickListener = listener
@@ -85,8 +84,4 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
         notifyDataSetChanged()
     }
 
-    fun setPhotoSearch(photoSearch: Photo){
-        this.photoSearch = photoSearch;
-        notifyDataSetChanged()
-    }
 }

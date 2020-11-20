@@ -8,5 +8,18 @@
         android:id="@+id/nearbyRestaurantsFragments"
         android:name="ca.qc.cgodin.restaurant.ui.fragments.NearbyRestaurantsFragments"
         android:label="resto_nearby_fragment"
-        tools:layout="@layout/resto_nearby_fragment" />
+        tools:layout="@layout/resto_nearby_fragment" >
+        <action
+            android:id="@+id/action_nearbyRestaurantsFragments_to_detailsRestoFragment"
+            app:destination="@id/detailsRestoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsRestoFragment"
+        android:name="ca.qc.cgodin.restaurant.ui.fragments.DetailsRestoFragment"
+        android:label="fragment_details_resto"
+        tools:layout="@layout/fragment_details_resto" >
+        <argument
+            android:name="Result"
+            app:argType="ca.qc.cgodin.restaurant.modeleSearch.Result" />
+    </fragment>
 </navigation>
