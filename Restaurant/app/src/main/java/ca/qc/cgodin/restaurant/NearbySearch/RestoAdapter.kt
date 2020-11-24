@@ -15,6 +15,7 @@ import ca.qc.cgodin.restaurant.R
 import ca.qc.cgodin.restaurant.modeleSearch.NearbySearch
 import ca.qc.cgodin.restaurant.modeleSearch.Photo
 import ca.qc.cgodin.restaurant.modeleSearch.Result
+import ca.qc.cgodin.restaurant.modeleSearchZomato.Restaurant
 import ca.qc.cgodin.restaurant.repository.RestaurantRepository
 import ca.qc.cgodin.restaurant.ui.RestoViewModel
 import ca.qc.cgodin.restaurant.ui.RestoViewModelProviderFactory
@@ -28,8 +29,7 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
 
     private var nearbySearch: List<Result> = emptyList()
 
-
-   // lateinit var viewModel: RestoViewModel
+    private var search: List<Restaurant> = emptyList()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvNameResto: TextView = itemView.findViewById(R.id.tvTitle)
@@ -51,7 +51,18 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         holder.itemView.apply {
-            tvTitle.text = nearbySearch[position].name;
+
+            tvTitle.text = search[position].restaurant.name;
+            tvPublishedAt.text = search[position].restaurant.user_rating.rating_text;
+            tvSource.text = search[position].restaurant.location.address;
+            place_id.text = search[position].restaurant.id;
+           // tvDescription.text = search[position].restaurant.featured_image;
+            Glide.with(this).load(search[position].restaurant.featured_image).into(ivRestoImage)
+
+            setOnClickListener {
+                onItemClickListener?.let { it(search[position]) }
+            }
+          /*  tvTitle.text = nearbySearch[position].name;
             tvPublishedAt.text = nearbySearch[position].rating.toString();
             tvSource.text = nearbySearch[position].vicinity;
             place_id.text = nearbySearch[position].place_id;
@@ -67,20 +78,25 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
             setOnClickListener {
                 onItemClickListener?.let { it(nearbySearch[position]) }
             }
-
+*/
 
         }
     }
 
-    private var onItemClickListener: ((Result) -> Unit)? = null
+    private var onItemClickListener: ((Restaurant) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Result) -> Unit) {
+    fun setOnItemClickListener(listener: (Restaurant) -> Unit) {
         onItemClickListener = listener
     }
-    override fun getItemCount() = nearbySearch.size
+    override fun getItemCount() = search.size
 
     fun setNearbySearch(nearbySearch: List<Result>){
         this.nearbySearch = nearbySearch;
+        notifyDataSetChanged()
+    }
+
+    fun setDetailsMenuResto(search: List<Restaurant>){
+        this.search = search;
         notifyDataSetChanged()
     }
 

@@ -47,5 +47,6 @@ class NearbyRestoActivity : AppCompatActivity() {
 
 
 
+
     }
 }

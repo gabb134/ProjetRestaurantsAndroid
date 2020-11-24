@@ -38,7 +38,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
 
         restoAdapter.setOnItemClickListener {
             val bundle  = Bundle().apply {
-                putSerializable("Result", it)
+                putSerializable("Restaurant", it)
             }
 
             findNavController().navigate(
@@ -47,13 +47,12 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
             )
 
         }
-       // val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "5146855747"))
-    //    startActivity(intent)
-      //  edText = view.findViewById(R.id.etRayon)
-
-
-        viewModel.resto.observe(viewLifecycleOwner, Observer { response ->
+      /*  viewModel.resto.observe(viewLifecycleOwner, Observer { response ->
             restoAdapter.setNearbySearch(response.results)
+        })*/
+
+        viewModel.searchVal.observe(viewLifecycleOwner, Observer { response ->
+            restoAdapter.setDetailsMenuResto(response.restaurants)
         })
 
 
@@ -64,7 +63,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
                 //delay(SEARCH_NEWS_TIME_DELAY)
                 editable?.let {
                     if(editable.toString().isNotEmpty()) {
-                        viewModel.getRestoNearby(editable.toString())
+                        viewModel.getMenu(editable.toString())
                     }
                 }
             }

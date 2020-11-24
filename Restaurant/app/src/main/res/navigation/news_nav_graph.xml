@@ -19,8 +19,11 @@
         android:label="fragment_details_resto"
         tools:layout="@layout/fragment_details_resto" >
         <argument
-            android:name="Result"
-            app:argType="ca.qc.cgodin.restaurant.modeleSearch.Result" />
+            android:name="Restaurant"
+            app:argType="ca.qc.cgodin.restaurant.modeleSearchZomato.Restaurant" />
+        <action
+            android:id="@+id/action_detailsRestoFragment_to_carteFragments"
+            app:destination="@id/carteFragments" />
     </fragment>
     <fragment
         android:id="@+id/carteFragments"
@@ -30,6 +33,9 @@
         <action
             android:id="@+id/action_carteFragments_to_detailsRestoFragment"
             app:destination="@id/detailsRestoFragment" />
+        <argument
+            android:name="Location"
+            app:argType="ca.qc.cgodin.restaurant.modeleSearchZomato.Locations" />
     </fragment>
     <fragment
         android:id="@+id/favorisFragment"
