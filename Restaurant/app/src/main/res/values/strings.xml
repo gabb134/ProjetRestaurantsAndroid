@@ -19,6 +19,8 @@
     <string name="Saved_restaurants">Les favoris</string>
     <string name="Search_Restaurants">Recherche</string>
     <string name="Carte_fragment">Map</string>
+    <string name="Resto">Resto Action Rapide Inc.</string>
+    <string name="Auth">Se connecter avec Google</string>
 
 
 </resources>
