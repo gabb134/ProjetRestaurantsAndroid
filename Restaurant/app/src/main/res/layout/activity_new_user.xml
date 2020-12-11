@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.qc.cgodin.restaurant.Authentification.NewUserActivity">
+
+    <Button
+        android:id="@+id/btnEnregistrer"
+        android:layout_width="349dp"
+        android:layout_height="48dp"
+        android:background="#020202"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="@string/Senregistrer"
+        android:textAllCaps="false"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.852" />
+
+    <TextView
+        android:id="@+id/tvNom2"
+        android:layout_width="284dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginEnd="185dp"
+        android:text="@string/Resto"
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195"
+        tools:text="@string/Resto" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="124dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="143dp"
+        android:layout_marginEnd="144dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041"
+        app:srcCompat="@drawable/ic_baseline_restaurant_24" />
+
+    <EditText
+        android:id="@+id/edPassword2"
+        android:layout_width="673dp"
+        android:layout_height="63dp"
+        android:ems="10"
+        android:hint="@string/ConfirmerMotDePasse"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.561" />
+
+    <EditText
+        android:id="@+id/edEmail"
+        android:layout_width="673dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="51dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/Courriel"
+        android:inputType="textAutoComplete"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.676" />
+
+    <EditText
+        android:id="@+id/edUsername"
+        android:layout_width="673dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="70dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/Utilisateur"
+        android:inputType="textAutoComplete"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.322" />
+
+    <EditText
+        android:id="@+id/edPassword"
+        android:layout_width="673dp"
+        android:layout_height="63dp"
+        android:ems="10"
+        android:hint="@string/MotDePasse"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.419" />
+</androidx.constraintlayout.widget.ConstraintLayout>

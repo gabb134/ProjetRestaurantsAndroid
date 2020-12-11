@@ -20,6 +20,8 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class NearbyRestoActivity : AppCompatActivity() {
+
+
     lateinit var viewModel: RestoViewModel
 
     private val navController by lazy {
