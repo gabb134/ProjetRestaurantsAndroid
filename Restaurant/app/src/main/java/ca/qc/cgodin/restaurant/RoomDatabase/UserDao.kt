@@ -15,11 +15,11 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(user: User)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+  /*  @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertFavoris(favoris: Favoris)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertUserFavorisCrossRef(crossRef: UserFavorisCrossRef)
+    fun insertUserFavorisCrossRef(crossRef: UserFavorisCrossRef)*/
 
 
 

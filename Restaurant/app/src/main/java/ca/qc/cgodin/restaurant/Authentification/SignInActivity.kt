@@ -201,6 +201,9 @@ class SignInActivity : AppCompatActivity() {
                         "Connecter sans probleme",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    //Il faut ajouter le user Google dans la table user
+
                     val intent = Intent(this, NearbyRestoActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -231,8 +234,8 @@ class SignInActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("FacebookLogin", "signInWithCredential:success")
                     val user = mAuth.currentUser
-
                         updateUI(user)
+                    //Il faut ajouter le user Facebook dans la table user
 
                 } else {
                     // If sign in fails, display a message to the user.
