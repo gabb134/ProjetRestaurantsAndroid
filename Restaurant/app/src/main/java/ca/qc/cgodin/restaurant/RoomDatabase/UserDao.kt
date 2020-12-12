@@ -8,6 +8,21 @@ import androidx.room.Query
 @Dao
 interface UserDao {
 
+
+
+
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insert(user: User)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertFavoris(favoris: Favoris)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertUserFavorisCrossRef(crossRef: UserFavorisCrossRef)
+
+
+
     @Query("SELECT * from user_table ORDER BY Username ASC")
     fun getUsers(): LiveData<List<User>>
 
@@ -20,9 +35,5 @@ interface UserDao {
     @Query("SELECT * FROM user_table WHERE Email=(:email)")
     fun getUserByEmail(email: String): LiveData<List<User>>
 
-
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(user: User)
 
 }

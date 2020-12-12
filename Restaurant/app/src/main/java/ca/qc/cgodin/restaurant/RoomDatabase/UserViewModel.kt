@@ -13,12 +13,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val allUsers: LiveData<List<User>>
 
     init {
-        val userDao : UserDao = UserRoomDatabase.getDatabase(application,viewModelScope).userDao()
+        val userDao : UserDao = UserRoomDatabase.getDatabase(application, viewModelScope).userDao()
         repository = UserRepository(userDao)
         allUsers = repository.allUsers
     }
 
-    fun insert(user:User) = viewModelScope.launch(Dispatchers.IO){
+    fun insert(user: User) = viewModelScope.launch(Dispatchers.IO){
         repository.insert(user)
     }
     fun searchUser(email:String) :LiveData<List<User>> {

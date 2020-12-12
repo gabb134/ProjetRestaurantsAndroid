@@ -25,7 +25,7 @@
     <string name="facebook_app_id">386886175858343</string>
     <string name="fb_login_protocol_scheme">fb386886175858343</string>
     <string name="facebookLogin">Se connecter avec Facebook</string>
-    <string name="Senregistrer">S\'enregistrer</string>
+    <string name="Senregistrer">S\'inscrire</string>
     <string name="Utilisateur">Utilisateur</string>
     <string name="MotDePasse">Mot de passe</string>
     <string name="Courriel">Courriel</string>
