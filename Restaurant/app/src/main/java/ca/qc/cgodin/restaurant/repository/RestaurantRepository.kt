@@ -14,6 +14,8 @@ class RestaurantRepository(private val userDao: UserDao) {
 
     val allFavoris : LiveData<List<Favoris>> =userDao.getFavoris()
 
+    //val allFavorisUser : LiveData<List<UserFavorisCrossRef>> = userDao.getFavoris()
+
     suspend fun insert(user: User){
         userDao.insert(user)
     }
@@ -32,6 +34,11 @@ class RestaurantRepository(private val userDao: UserDao) {
     }
 
     fun getFavoris() = userDao.getFavoris()
+
+     fun getFavorisUser(id: Int) :LiveData<List<UserFavorisCrossRef>>{
+        return userDao.getFavoris(id)
+    }
+
 
 
     //suspend fun getNearbyRestaurants(rayon: String) =

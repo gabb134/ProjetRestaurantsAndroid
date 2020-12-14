@@ -32,6 +32,10 @@ interface UserDao {
     @Query("SELECT * FROM user_table1 WHERE Username=(:name)")
     fun getUserByUsername(name: String): LiveData<List<User>>
 
+    @Transaction
+    @Query("SELECT * FROM userfavoriscrossref WHERE UserId=(:id)")
+    fun getFavoris(id: Int): LiveData<List<UserFavorisCrossRef>>
+
   /*  @Transaction
     @Query("SELECT id FROM user_table1 WHERE Email=(:email)")
     fun getUserIdByEmail(email: String): LiveData<List<User>>*/

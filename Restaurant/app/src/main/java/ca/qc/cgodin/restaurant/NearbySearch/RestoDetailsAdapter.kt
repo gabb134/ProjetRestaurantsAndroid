@@ -42,7 +42,6 @@ class RestoDetailsAdapter(val viewModel: RestoViewModel,val idUser:Int) :
    // lateinit var favoris: Favoris
 
     //  var details: String? = null
-    lateinit var lstLocations: ArrayList<Location>
     private lateinit var onItem1ClickListener: ((Favoris) -> Unit)
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -63,59 +62,60 @@ class RestoDetailsAdapter(val viewModel: RestoViewModel,val idUser:Int) :
         holder.itemView.apply {
 
             tvNomProduit.text =
-                menu.get(1)?.daily_menu?.dishes?.get(position)?.dish?.name
+                menu.get(0)?.daily_menu?.dishes?.get(position)?.dish?.name
             tvPrix.text =
-                menu.get(1)?.daily_menu?.dishes?.get(position)?.dish?.price
-            Log.i("Info:",">>>>>>>>>>>>>>>")
-    }
-}
+                menu.get(0)?.daily_menu?.dishes?.get(position)?.dish?.price
+            Log.i("Info:", ">>>>>>>>>>>>>>>")
 
 
 
-            tvNumTel.text = details?.name
-            tvDescriptionDetails.text = details?.R?.res_id.toString()
-            //tvHeureOuverture.text = details?.phone_numbers
 
-            tvHeureOuverture.text = details?.featured_image
-            Glide.with(this).load(details?.featured_image).into(ivDetailsImage)
 
-             val favoris = details?.R?.res_id?.let { Favoris( it.toLong()) }
 
-            webViewMenu.apply {
-                webViewClient = WebViewClient()
-                details?.menu_url?.let { loadUrl(it) }
+
+        val favoris = details?.R?.res_id?.let { Favoris(it.toLong()) }
+
+
+        var lstLoc: Locations? = lstLocations?.let { Locations(it) }
+
+
+        fabFavoris.setOnClickListener {
+
+
+            if (favoris != null) {
+
+
+                //  onItem1ClickListener(favoris)
+                //val id = intent.getIntArrayExtra("idUser")
+
+                viewModel.insertFavoris(favoris)
+                val crossRef = UserFavorisCrossRef(
+                    idUser,
+                    favoris.RestoId
+                ) // voir comment obtenir le id de la personne qui a ajoute un resto dans ses favoris
+                viewModel.insertUserFavorisCrossRef(crossRef)
+                Toast.makeText(
+                    holder.itemView.context,
+                    "favoris a été ajouté dans la BD",
+                    Toast.LENGTH_LONG
+                ).show()
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Valeur id User dans le adapteur ${idUser} , valeurr de favorisId ${favoris.RestoId}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
-
-            var lstLoc: Locations? = lstLocations?.let { Locations(it) }
-
-            fabLocation.setOnClickListener {
-                onItemClickListener?.let { lstLoc?.let { it1 -> it(it1) } }
-            }
-            fabFavoris.setOnClickListener {
-
-
-                if (favoris != null) {
-
-
-                  //  onItem1ClickListener(favoris)
-                    //val id = intent.getIntArrayExtra("idUser")
-
-                    viewModel.insertFavoris(favoris)
-                    val crossRef = UserFavorisCrossRef(idUser,favoris.RestoId) // voir comment obtenir le id de la personne qui a ajoute un resto dans ses favoris
-                    viewModel.insertUserFavorisCrossRef(crossRef)
-                    Toast.makeText(holder.itemView.context,"favoris a été ajouté dans la BD", Toast.LENGTH_LONG).show()
-                    Toast.makeText(holder.itemView.context,"Valeur id User dans le adapteur ${idUser} , valeurr de favorisId ${favoris.RestoId}", Toast.LENGTH_LONG).show()
-                }
-
-
-             //   val favoris = Favoris(0,)
-               // setOnItem1ClickListener()
-            }
-
         }
 
+            //   val favoris = Favoris(0,)
+            // setOnItem1ClickListener()
+        }
 
     }
+
+
+
+
 
     fun setDetailsResto(resto: Restaurant) {
         this.resto = resto;
@@ -147,7 +147,7 @@ class RestoDetailsAdapter(val viewModel: RestoViewModel,val idUser:Int) :
         onItem1ClickListener = listener
     }
 
-    override fun getItemCount() = 1
 }
+
 
 

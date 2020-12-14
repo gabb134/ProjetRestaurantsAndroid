@@ -117,7 +117,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
 
 
 
-    }
+
 
         private fun setupBtnSuivantPrecedent(){
             if(intPage == 0){

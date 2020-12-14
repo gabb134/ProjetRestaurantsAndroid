@@ -32,17 +32,17 @@ class RestoViewModel(private val  restaurantRepository: RestaurantRepository)  :
 
 
     init{
+        allUsers = restaurantRepository.allUsers
+        allFavoris = restaurantRepository.allFavoris
        // getRestoNearby("1500")
        getNearbyResto("1500")
     }
- /*   fun getRestoNearby(rayon: String) = viewModelScope.launch {
+    /*fun getRestoNearby(rayon: String) = viewModelScope.launch {
         //val userDao : UserDao = UserRoomDatabase.getDatabase(application).userDao()
 
-        allUsers = restaurantRepository.allUsers
-        allFavoris = restaurantRepository.allFavoris
         getRestoNearby("1500")
-        getMenu("1500")
-    }
+       // getMenu("1500")
+    }*/
 
     /*fun getUserIdByEmail(email: String) = viewModelScope.launch((Dispatchers.IO)){
         restaurantRepository.getUserIdByEmail(email)
@@ -56,6 +56,10 @@ class RestoViewModel(private val  restaurantRepository: RestaurantRepository)  :
     }
     fun getFavoris() = restaurantRepository.getFavoris()
 
+     fun getFavorisUser(id: Int): LiveData<List<UserFavorisCrossRef>>{
+        return restaurantRepository.getFavorisUser(id)
+    }
+
     fun insertUserFavorisCrossRef(userFavorisCrossRef: UserFavorisCrossRef) = viewModelScope.launch(
         Dispatchers.IO){
         restaurantRepository.insertUserFavorisCrossRef(userFavorisCrossRef)
@@ -66,12 +70,6 @@ class RestoViewModel(private val  restaurantRepository: RestaurantRepository)  :
         return restaurantRepository.searchUser(email)
     }
 
-
-    fun getRestoNearby(rayon: String) = viewModelScope.launch {
-        val response = restaurantRepository.getNearbyRestaurants(rayon)
-
-        resto.postValue(response.body())
-    }*/
 
     fun getDetailsResto(res_id: Int) = viewModelScope.launch {
         val response = restaurantRepository.getDetailsRestaurants(res_id)

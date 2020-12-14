@@ -18,6 +18,7 @@ import ca.qc.cgodin.restaurant.NearbySearch.NearbyRestoActivity
 import ca.qc.cgodin.restaurant.NearbySearch.RestoDetailsAdapter
 import ca.qc.cgodin.restaurant.R
 import ca.qc.cgodin.restaurant.RoomDatabase.UserViewModel
+import ca.qc.cgodin.restaurant.modeleSearchZomato.Locations
 import ca.qc.cgodin.restaurant.ui.RestoViewModel
 import kotlinx.android.synthetic.main.fragment_details_resto.*
 import kotlinx.android.synthetic.main.restaurant_detail_item.*
@@ -127,10 +128,7 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
                     it1
                 ) }
             }
-           findNavController().navigate(
-               R.id.action_detailsRestoFragment_to_carteFragments,
-               bundle
-           )
+
 
         }
 
@@ -200,8 +198,9 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
     fun setOnItemClickListener(listener: (Locations) -> Unit) {
         onItemClickListener = listener
     }
-    private fun setupRC(viewModel: RestoViewModel){
-        restoDetailsAdapter = RestoDetailsAdapter(viewModel)
+
+    private fun setupRC(viewModel: RestoViewModel, idUserConnection: Int){
+        restoDetailsAdapter = RestoDetailsAdapter(viewModel,idUserConnection)
         rcDetailsResto.adapter = restoDetailsAdapter
 
         rcDetailsResto.addItemDecoration(
@@ -210,37 +209,7 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
                 DividerItemDecoration.VERTICAL
             )
         )
-
-    private fun setupRC(viewModel: RestoViewModel, idUserConnection: Int){
-        restoDetailsAdapter = RestoDetailsAdapter(viewModel,idUserConnection)
-        rcDetailsResto.adapter = restoDetailsAdapter
-
     }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param idUserLogin Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BlankFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(idUserLogin: Int) =
-            DetailsRestoFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_IdUser, idUserLogin)
-
-                    //idUserConnection = idUserLogin
-
-                    //restoDetailsAdapter = RestoDetailsAdapter(viewModel)
-                  //  restoDetailsAdapter.id = idUserLogin
-                   // Toast.makeText(context,"Id user dans DetailsRestoFragment : ${idUserLogin}", Toast.LENGTH_LONG).show()
-                    Log.i("IdUser dans le log : ","${idUserLogin}")
-                }
 
 
-            }
-    }
 }

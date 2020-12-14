@@ -22,6 +22,7 @@ class RechercheFragment : Fragment(R.layout.restaurant) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= (activity as NearbyRestoActivity).viewModel
 
+
         restoAdapter = RestoAdapter()
         rcViewResto.adapter = restoAdapter
 
