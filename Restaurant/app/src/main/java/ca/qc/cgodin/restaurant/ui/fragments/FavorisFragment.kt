@@ -52,7 +52,7 @@ class FavorisFragment : Fragment() {
         rcRestoFavoris.adapter = restoAdapter
         viewModel.getFavorisUser(idUserConnection).observe(viewLifecycleOwner,{ favoris->
           //restoAdapter.se
-            Log.i("FAVORIS","${favoris[0].RestoId}")
+            //Log.i("FAVORIS","${favoris[0].RestoId}")
 
 
         })

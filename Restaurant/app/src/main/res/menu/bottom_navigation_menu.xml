@@ -8,12 +8,4 @@
         android:id="@+id/favorisFragment"
         android:icon="@drawable/ic_favorite"
         android:title="@string/Saved_restaurants" />
-    <item
-        android:id="@+id/rechercheFragment"
-        android:icon="@drawable/ic_search"
-        android:title="@string/Search_Restaurants" />
-    <item
-        android:id="@+id/carteFragments"
-        android:icon="@drawable/ic_baseline_location_on_24"
-        android:title="@string/Carte_fragment" />
 </menu>

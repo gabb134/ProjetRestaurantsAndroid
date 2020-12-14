@@ -73,13 +73,13 @@ class RestoDetailsAdapter(val viewModel: RestoViewModel,val idUser:Int) :
 
 
 
-        val favoris = details?.R?.res_id?.let { Favoris(it.toLong()) }
+     //   val favoris = details?.R?.res_id?.let { Favoris(it.toLong()) }
 
 
         var lstLoc: Locations? = lstLocations?.let { Locations(it) }
 
 
-        fabFavoris.setOnClickListener {
+       /* fabFavoris.setOnClickListener {
 
 
             if (favoris != null) {
@@ -105,7 +105,7 @@ class RestoDetailsAdapter(val viewModel: RestoViewModel,val idUser:Int) :
                     Toast.LENGTH_LONG
                 ).show()
             }
-        }
+        }*/
 
             //   val favoris = Favoris(0,)
             // setOnItem1ClickListener()
