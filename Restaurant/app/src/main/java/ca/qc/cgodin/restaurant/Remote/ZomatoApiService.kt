@@ -32,7 +32,7 @@ interface ZomatoApiService {
 
     @Headers("user-key: ae896dac08969c9b6a29ebb48383afe8"
     )
-    @GET("restaurant")
+    @GET("restaurant?")
     suspend fun getDetails(
         @Query("res_id")
         res_id: Int ,

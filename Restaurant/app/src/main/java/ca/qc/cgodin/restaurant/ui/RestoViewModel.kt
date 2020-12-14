@@ -1,6 +1,7 @@
 package ca.qc.cgodin.restaurant.ui
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,9 @@ class RestoViewModel(private val  restaurantRepository: RestaurantRepository)  :
     val resto: MutableLiveData<NearbySearch> = MutableLiveData()
 
     val details: MutableLiveData<DetailResto> = MutableLiveData()
+
+    val detailsFav: ArrayList<MutableLiveData<DetailResto>> = arrayListOf(MutableLiveData())
+
 
     val menu: MutableLiveData<Menu> = MutableLiveData()
 
@@ -74,6 +78,15 @@ class RestoViewModel(private val  restaurantRepository: RestaurantRepository)  :
     fun getDetailsResto(res_id: Int) = viewModelScope.launch {
         val response = restaurantRepository.getDetailsRestaurants(res_id)
         details.postValue(response.body())
+
+    }
+    fun getDetailsFavoris(res_id: Int) = viewModelScope.launch {
+        val response = restaurantRepository.getDetailsRestaurants(res_id)
+      //  Log.i("FAVORIS","${response.body()?.name}")
+        details.postValue(response.body())
+
+        detailsFav.add(details)
+     //   Log.i("FAVORIS","${detailsFav.size}")
 
     }
 

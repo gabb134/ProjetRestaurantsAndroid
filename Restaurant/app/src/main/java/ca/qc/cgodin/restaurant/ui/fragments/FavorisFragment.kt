@@ -6,12 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import ca.qc.cgodin.restaurant.NearbySearch.FavorisAdapter
 import ca.qc.cgodin.restaurant.NearbySearch.NearbyRestoActivity
-import ca.qc.cgodin.restaurant.NearbySearch.RestoAdapter
 import ca.qc.cgodin.restaurant.R
 import ca.qc.cgodin.restaurant.ui.RestoViewModel
 import kotlinx.android.synthetic.main.fragment_favoris.*
-import kotlinx.android.synthetic.main.restaurant.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,9 +23,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class FavorisFragment : Fragment() {
-    lateinit var restoAdapter: RestoAdapter
+    lateinit var favorisAdapter: FavorisAdapter
              var idUserConnection = 0;
     lateinit var viewModel: RestoViewModel
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,22 +42,32 @@ class FavorisFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_favoris, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+ /*   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {      super.onViewCreated(view, savedInstanceState)
         viewModel= (activity as NearbyRestoActivity).viewModel
         idUserConnection = (activity as NearbyRestoActivity).idUser
 
 
 
-        restoAdapter = RestoAdapter()
-        rcRestoFavoris.adapter = restoAdapter
+        favorisAdapter = FavorisAdapter()
+        rcRestoFavoris.adapter = favorisAdapter
         viewModel.getFavorisUser(idUserConnection).observe(viewLifecycleOwner,{ favoris->
           //restoAdapter.se
-            Log.i("FAVORIS","${favoris[0].RestoId}")
+            for(item in favoris){
 
+                viewModel.getDetailsFavoris(item.RestoId.toInt())
+             //
+
+            }
 
         })
+        Log.i("FAVORIS","${viewModel.detailsFav[0].value}")
+        favorisAdapter.setDetails(viewModel.detailsFav)
+
+
+
+
+
 
     }
-
+*/
 }
