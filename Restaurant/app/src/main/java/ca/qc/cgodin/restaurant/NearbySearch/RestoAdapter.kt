@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cgodin.restaurant.R
 import ca.qc.cgodin.restaurant.modeleSearch.Result
@@ -15,7 +18,8 @@ import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_details_resto.view.*
 import kotlinx.android.synthetic.main.item_article_preview.view.*
-import okhttp3.internal.Internal.instance
+import kotlinx.android.synthetic.main.restaurant_detail_item.view.*
+import java.lang.Exception
 
 
 class RestoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

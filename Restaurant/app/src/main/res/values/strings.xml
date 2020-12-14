@@ -21,6 +21,18 @@
     <string name="Carte_fragment">Map</string>
     <string name="Resto">Resto Action Rapide Inc.</string>
     <string name="Auth">Se connecter avec Google</string>
+    <string name="Auth2">Se connecter avec Facebook</string>
+    <string name="facebook_app_id">386886175858343</string>
+    <string name="fb_login_protocol_scheme">fb386886175858343</string>
+    <string name="facebookLogin">Se connecter avec Facebook</string>
+    <string name="Senregistrer">S\'inscrire</string>
+    <string name="Utilisateur">Utilisateur</string>
+    <string name="MotDePasse">Mot de passe</string>
+    <string name="Courriel">Courriel</string>
+    <string name="BoutonEnregistrer">S\'enregistrer</string>
+    <string name="ConfirmerMotDePasse">Confirmer mot de passe</string>
+    <string name="SeConnecter">Se connecter</string>
+    <string name="UserEmail">Courriel</string>
 
 
 </resources>
