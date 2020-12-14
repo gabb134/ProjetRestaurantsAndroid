@@ -56,6 +56,7 @@ class FavorisFragment : Fragment() {
 
                 viewModel.getDetailsFavoris(item.RestoId.toInt())
              //
+            //Log.i("FAVORIS","${favoris[0].RestoId}")
 
             }
 

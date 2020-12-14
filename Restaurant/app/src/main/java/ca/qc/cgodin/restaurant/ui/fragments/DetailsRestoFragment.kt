@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import ca.qc.cgodin.restaurant.NearbySearch.NearbyRestoActivity
 import ca.qc.cgodin.restaurant.NearbySearch.RestoDetailsAdapter
 import ca.qc.cgodin.restaurant.R
+import ca.qc.cgodin.restaurant.RoomDatabase.Favoris
+import ca.qc.cgodin.restaurant.RoomDatabase.UserFavorisCrossRef
 import ca.qc.cgodin.restaurant.RoomDatabase.UserViewModel
 import ca.qc.cgodin.restaurant.modeleSearchZomato.Locations
 import ca.qc.cgodin.restaurant.ui.RestoViewModel
@@ -154,6 +156,24 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
             val callIntent = Intent(Intent.ACTION_VIEW, Uri.parse(restaurant.restaurant.url))
             context?.startActivity(callIntent)
         }
+        fabFavoris2.setOnClickListener {
+            Toast.makeText(context, "Favoris 2!! ${restaurant.restaurant.id}", Toast.LENGTH_SHORT).show()
+
+            val favoris = Favoris(restaurant.restaurant.R.res_id.toLong())
+            if (favoris != null) {
+
+
+                //  onItem1ClickListener(favoris)
+                //val id = intent.getIntArrayExtra("idUser")
+
+                viewModel.insertFavoris(favoris)
+                val crossRef = UserFavorisCrossRef(idUserConnection, favoris.RestoId) // voir comment obtenir le id de la personne qui a ajoute un resto dans ses favoris
+                viewModel.insertUserFavorisCrossRef(crossRef)
+                Toast.makeText(context,"favoris a été ajouté dans la BD", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Valeur id User dans le adapteur ${idUserConnection} , valeurr de favorisId ${favoris.RestoId}", Toast.LENGTH_LONG).show()
+            }
+
+        }
 
     fabOption.setOnClickListener {
 
@@ -162,6 +182,7 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
             fabLocation2.show()
             fabCall2.show()
             fabSMS2.show()
+            fabFavoris2.show()
             estOuvert = false
 
         }else{
@@ -169,12 +190,13 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
             fabCall2.hide()
             fabSMS2.hide()
             fabWeb.hide()
-
+            fabFavoris2.hide()
             estOuvert = true
         }
 
 
     }
+
     }
 
 
