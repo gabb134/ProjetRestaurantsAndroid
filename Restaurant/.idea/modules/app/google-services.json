@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "544273783436-n48mqkatj86r7kksa4g22usrt0o8gi87.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.qc.cgodin.labo10",
+            "certificate_hash": "0b7214840080c75a5c495442b71cc9abd634f722"
+          }
+        },
+        {
           "client_id": "544273783436-2lguavin7h32sc9o026m94i0ijvv3t9r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

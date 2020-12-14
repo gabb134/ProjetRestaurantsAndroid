@@ -1,19 +1,17 @@
 package ca.qc.cgodin.restaurant.ui.fragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import ca.qc.cgodin.restaurant.NearbySearch.NearbyRestoActivity
 import ca.qc.cgodin.restaurant.NearbySearch.RestoAdapter
 import ca.qc.cgodin.restaurant.R
-import ca.qc.cgodin.restaurant.modeleSearch.Result
 import ca.qc.cgodin.restaurant.ui.RestoViewModel
+import kotlinx.android.synthetic.main.fragment_details_resto.*
 import kotlinx.android.synthetic.main.restaurant.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
@@ -23,11 +21,7 @@ import kotlinx.coroutines.launch
 class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
     lateinit var viewModel: RestoViewModel
     lateinit var restoAdapter: RestoAdapter
-    private var nearbySearch: MutableList<Result>? = null
-
-    private var detailsResto: MutableList<ca.qc.cgodin.restaurant.modeleDetail.Result>? = null
-
-    lateinit var edText: EditText
+    var intPage = 0;
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,6 +29,8 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
 
 
         setupRC(viewModel)
+        setupBtnSuivantPrecedent()
+
 
         restoAdapter.setOnItemClickListener {
             val bundle  = Bundle().apply {
@@ -50,44 +46,88 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
       /*  viewModel.resto.observe(viewLifecycleOwner, Observer { response ->
             restoAdapter.setNearbySearch(response.results)
         })*/
+        viewModel.getNearbyResto("1500")
 
         viewModel.searchVal.observe(viewLifecycleOwner, Observer { response ->
             restoAdapter.setDetailsMenuResto(response.restaurants)
         })
 
 
-        var job: Job? = null
-        etRayonResto.addTextChangedListener() { editable ->
-            job?.cancel()
-            job = MainScope().launch {
-                //delay(SEARCH_NEWS_TIME_DELAY)
-                editable?.let {
-                    if(editable.toString().isNotEmpty()) {
-                        viewModel.getMenu(editable.toString())
-                    }
+        btnType.setOnClickListener {
+            if(etTypeResto.toString().isNotEmpty()) {
+
+            viewModel.getSearchByName(etTypeResto.text.toString(),etRayonResto.text.toString(),"0")
+            viewModel.searchVal.observe(
+                viewLifecycleOwner,
+                Observer { response ->
+                    restoAdapter.setDetailsMenuResto(response.restaurants)
                 }
-            }
+            )
+        }
+            setupBtnSuivantPrecedent()
+
+        }
+
+        btnPageSuivant.setOnClickListener {
+            intPage += 20;
+            viewModel.getSearchByName(etTypeResto.text.toString(),etRayonResto.text.toString(),intPage.toString())
+            viewModel.searchVal.observe(
+                viewLifecycleOwner,
+                Observer { response ->
+                    restoAdapter.setDetailsMenuResto(response.restaurants)
+                }
+            )
+            setupBtnSuivantPrecedent()
+
+        }
+
+        btnPagePrecedent.setOnClickListener {
+            intPage -= 20;
+            viewModel.getSearchByName(etTypeResto.text.toString(),etRayonResto.text.toString(),intPage.toString())
+            viewModel.searchVal.observe(
+                viewLifecycleOwner,
+                Observer { response ->
+                    restoAdapter.setDetailsMenuResto(response.restaurants)
+                }
+            )
+            setupBtnSuivantPrecedent()
         }
 
 
 
 
 
-    }
 
-    fun setArticles(nearbySearch: MutableList<Result>) {
-        this.nearbySearch = nearbySearch
 
     }
 
-    fun setDetails(detailsResto: MutableList<ca.qc.cgodin.restaurant.modeleDetail.Result>) {
-        this.detailsResto = detailsResto
-
-    }
-
+        private fun setupBtnSuivantPrecedent(){
+            if(intPage == 0){
+                btnPagePrecedent.isEnabled = false
+                btnPagePrecedent.isClickable = false
+            }else{
+                btnPagePrecedent.isEnabled = true
+                btnPagePrecedent.isClickable = true
+            }
+            if(intPage == 80){
+                btnPageSuivant.isEnabled = false
+                btnPageSuivant.isClickable = false
+            }
+            else{
+                btnPageSuivant.isEnabled = true
+                btnPageSuivant.isClickable = true
+            }
+        }
     private fun setupRC(viewModel: RestoViewModel){
-        restoAdapter = RestoAdapter(viewModel)
+        restoAdapter = RestoAdapter()
         rcViewResto.adapter = restoAdapter
+
+        rcViewResto.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 }
 

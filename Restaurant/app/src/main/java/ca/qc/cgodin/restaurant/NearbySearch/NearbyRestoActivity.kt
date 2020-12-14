@@ -44,9 +44,5 @@ class NearbyRestoActivity : AppCompatActivity() {
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
         }
-
-
-
-
     }
 }

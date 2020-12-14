@@ -1,30 +1,24 @@
 package ca.qc.cgodin.restaurant.NearbySearch
 
-import android.media.Image
-import android.util.Log
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cgodin.restaurant.R
-import ca.qc.cgodin.restaurant.modeleSearch.NearbySearch
-import ca.qc.cgodin.restaurant.modeleSearch.Photo
 import ca.qc.cgodin.restaurant.modeleSearch.Result
 import ca.qc.cgodin.restaurant.modeleSearchZomato.Restaurant
-import ca.qc.cgodin.restaurant.repository.RestaurantRepository
-import ca.qc.cgodin.restaurant.ui.RestoViewModel
-import ca.qc.cgodin.restaurant.ui.RestoViewModelProviderFactory
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_details_resto.view.*
 import kotlinx.android.synthetic.main.item_article_preview.view.*
-import java.lang.Exception
+import okhttp3.internal.Internal.instance
 
 
-class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RestoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     private var nearbySearch: List<Result> = emptyList()
@@ -33,12 +27,10 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvNameResto: TextView = itemView.findViewById(R.id.tvTitle)
-        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
         val place_id: TextView = itemView.findViewById(R.id.place_id)
         val tvPhoneNumber: TextView = itemView.findViewById(R.id.tvPublishedAt)
         val tvAddress: TextView = itemView.findViewById(R.id.tvTitle)
         val tvImg: ImageView = itemView.findViewById(R.id.ivRestoImage)
-
 
 
     }
@@ -56,30 +48,12 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
             tvPublishedAt.text = search[position].restaurant.user_rating.rating_text;
             tvSource.text = search[position].restaurant.location.address;
             place_id.text = search[position].restaurant.id;
-           // tvDescription.text = search[position].restaurant.featured_image;
+            rating.rating = search[position].restaurant.user_rating.aggregate_rating.toString().toFloat();
             Glide.with(this).load(search[position].restaurant.featured_image).into(ivRestoImage)
 
             setOnClickListener {
                 onItemClickListener?.let { it(search[position]) }
             }
-          /*  tvTitle.text = nearbySearch[position].name;
-            tvPublishedAt.text = nearbySearch[position].rating.toString();
-            tvSource.text = nearbySearch[position].vicinity;
-            place_id.text = nearbySearch[position].place_id;
-
-
-            try {
-                val url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" +nearbySearch[position].photos[0].photo_reference + "&key=AIzaSyDm2ot4-CDQg6M6ZJSbz0K21cXUklAQYQ0";
-            //    https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=YOUR_API_KEY
-                Glide.with(this).load(url).into(ivRestoImage)
-            } catch (e: Exception){
-
-            }
-            setOnClickListener {
-                onItemClickListener?.let { it(nearbySearch[position]) }
-            }
-*/
-
         }
     }
 
