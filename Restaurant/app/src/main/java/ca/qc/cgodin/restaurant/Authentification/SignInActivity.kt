@@ -3,15 +3,20 @@ package ca.qc.cgodin.restaurant.Authentification
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.TextUtils.replace
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import ca.qc.cgodin.restaurant.NearbySearch.NearbyRestoActivity
+import ca.qc.cgodin.restaurant.NearbySearch.RestoDetailsAdapter
 import ca.qc.cgodin.restaurant.R
-import ca.qc.cgodin.restaurant.RoomDatabase.UserViewModel
-import ca.qc.cgodin.restaurant.RoomDatabase.UserViewModelFactory
+import ca.qc.cgodin.restaurant.RoomDatabase.*
+import ca.qc.cgodin.restaurant.ui.fragments.BlankFragment
+import ca.qc.cgodin.restaurant.ui.fragments.DetailsRestoFragment
+import ca.qc.cgodin.restaurant.ui.fragments.NearbyRestaurantsFragments
 import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
@@ -24,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import kotlinx.coroutines.launch
 
 
 class SignInActivity : AppCompatActivity() {
@@ -48,9 +54,12 @@ class SignInActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+       // testerNouvelBD()
 
         mAuth = FirebaseAuth.getInstance()
         //Initialise Facebook SDK
@@ -104,6 +113,30 @@ class SignInActivity : AppCompatActivity() {
             SeConnecter()
         }
     }
+
+   /* private fun testerNouvelBD() {
+
+        val userDao : UserDao = UserRoomDatabase.getDatabase(application).userDao()
+
+        val favoris = listOf(
+            Favoris(0,"resto test","123 rue test",5146787654,"test"),
+            Favoris(0,"resto test1","123 rue test1",5146787654,"test1")
+        )
+        val user = listOf(
+            User(0,"Gabo","Password1","klk1"),
+            User(0,"Alex","Password1","Klk2")
+        )
+        val userFavorisRelations = listOf(
+            UserFavorisCrossRef(1,1),
+            UserFavorisCrossRef(1,2)
+        )
+        lifecycleScope.launch {
+            user.forEach { userDao.insert(it) }
+            favoris.forEach { userDao.insertFavoris(it)
+                userFavorisRelations.forEach { userDao.insertUserFavorisCrossRef(it) }}
+        }
+    }*/
+
     private fun SeConnecter(){ //Login local, je dois comparé avec le user qui se trouve dans la bd
         val emailLogin = edUserNameEmailLogin.text.toString()
         val passwordLogin = edPasswordLogin.text.toString()
@@ -116,17 +149,38 @@ class SignInActivity : AppCompatActivity() {
                         users -> users.let{
                     //Toast.makeText(applicationContext, "Element dans la liste : ${it.first().Email}", Toast.LENGTH_SHORT).show()
 
-                    if(it.first().Email==emailLogin && it.first().Password == passwordLogin){ //si ils se trouvenet dans la BD
+                    if(it.size!=0){
+                        if(it.first().Email==emailLogin && it.first().Password == passwordLogin){ //si ils se trouvenet dans la BD
+                            val intent = Intent(this, NearbyRestoActivity::class.java)
 
-                        val intent = Intent(this, NearbyRestoActivity::class.java)
-                        startActivity(intent)
-                        edUserNameEmailLogin.text.clear()
-                        edPasswordLogin.text.clear()
-                        Toast.makeText(applicationContext, "Bienvenue  ${it.first().Username} dans l'application", Toast.LENGTH_SHORT).show()
+                            intent.putExtra("idUser",it.first().Id)
 
+                            startActivity(intent)
+
+                            Toast.makeText(applicationContext, "Id user dans login: ${it.first().Id}", Toast.LENGTH_SHORT).show()
+
+
+                            //val detailsRestoFragment = DetailsRestoFragment.newInstance(it.first().Id)
+                           // val nearbyRestaurantsFragments = NearbyRestaurantsFragments.newInstance(it.first().Id)
+
+                       /*     val bundle = Bundle()
+                            bundle.putInt("idUser", it.first().Id)
+                            val detailsRestoFragment = DetailsRestoFragment()
+                            detailsRestoFragment.arguments?.putInt("idUser",it.first().Id)*/
+                            //.replace(R.id.detailsRestoFragment,detailsRestoFragment)
+
+                            edUserNameEmailLogin.text.clear()
+                            edPasswordLogin.text.clear()
+                            Toast.makeText(applicationContext, "Bienvenue  ${it.first().Username} dans l'application", Toast.LENGTH_SHORT).show()
+
+                        }else{
+                            Toast.makeText(applicationContext,"Ce compte n'existe pas!",Toast.LENGTH_LONG).show()
+                        }
                     }else{
                         Toast.makeText(applicationContext,"Ce compte n'existe pas!",Toast.LENGTH_LONG).show()
                     }
+
+
 
                 }
                   //test  Toast.makeText(applicationContext, "${it.first().toString()}", Toast.LENGTH_SHORT).show()
@@ -204,6 +258,7 @@ class SignInActivity : AppCompatActivity() {
 
                     //Il faut ajouter le user Google dans la table user
 
+
                     val intent = Intent(this, NearbyRestoActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -235,6 +290,7 @@ class SignInActivity : AppCompatActivity() {
                     Log.d("FacebookLogin", "signInWithCredential:success")
                     val user = mAuth.currentUser
                         updateUI(user)
+
                     //Il faut ajouter le user Facebook dans la table user
 
                 } else {

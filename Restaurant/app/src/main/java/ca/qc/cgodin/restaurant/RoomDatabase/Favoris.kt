@@ -5,15 +5,10 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity(tableName = "favoris_table")
+@Entity(tableName = "favoris_table1")
 data class Favoris(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name="id")
-    val FavorisId:Int,
-    val Name:String,
-    val Address:String,
-    val PhoneNumber:Int,
-    val Email:String
-
-)
+    val RestoId: Long
+    )
 

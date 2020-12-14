@@ -60,8 +60,8 @@
 
     <EditText
         android:id="@+id/edPassword2"
-        android:layout_width="673dp"
-        android:layout_height="63dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="@string/ConfirmerMotDePasse"
         android:inputType="textPassword"
@@ -73,8 +73,8 @@
 
     <EditText
         android:id="@+id/edEmail"
-        android:layout_width="673dp"
-        android:layout_height="63dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
         android:layout_marginTop="51dp"
         android:fontFamily="sans-serif-light"
         android:hint="@string/Courriel"
@@ -88,8 +88,8 @@
 
     <EditText
         android:id="@+id/edUsername"
-        android:layout_width="673dp"
-        android:layout_height="63dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="70dp"
         android:fontFamily="sans-serif-light"
         android:hint="@string/Utilisateur"
@@ -103,8 +103,8 @@
 
     <EditText
         android:id="@+id/edPassword"
-        android:layout_width="673dp"
-        android:layout_height="63dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="@string/MotDePasse"
         android:inputType="textPassword"

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ import ca.qc.cgodin.restaurant.ui.RestoViewModel
 import ca.qc.cgodin.restaurant.ui.RestoViewModelProviderFactory
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_article_preview.view.*
+import kotlinx.android.synthetic.main.restaurant_detail_item.view.*
 import java.lang.Exception
 
 
@@ -78,7 +80,9 @@ class RestoAdapter(val viewModel: RestoViewModel) : RecyclerView.Adapter<Recycle
             setOnClickListener {
                 onItemClickListener?.let { it(nearbySearch[position]) }
             }
+
 */
+
 
         }
     }

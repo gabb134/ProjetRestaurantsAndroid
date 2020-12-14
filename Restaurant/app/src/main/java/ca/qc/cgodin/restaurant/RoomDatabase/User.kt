@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity(tableName = "user_table")
+@Entity(tableName = "user_table1")
 data class User(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")

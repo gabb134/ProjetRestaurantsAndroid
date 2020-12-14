@@ -1,10 +1,8 @@
 package ca.qc.cgodin.restaurant.RoomDatabase
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+
 @Dao
 interface UserDao {
 
@@ -15,25 +13,46 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(user: User)
 
-  /*  @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertFavoris(favoris: Favoris)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertUserFavorisCrossRef(crossRef: UserFavorisCrossRef)*/
+    fun insertUserFavorisCrossRef(crossRef: UserFavorisCrossRef)
 
 
-
-    @Query("SELECT * from user_table ORDER BY Username ASC")
+    @Transaction
+    @Query("SELECT * from user_table1 ORDER BY Username ASC")
     fun getUsers(): LiveData<List<User>>
 
-    @Query("SELECT * FROM user_table WHERE id=(:id)")
+    @Transaction
+    @Query("SELECT * FROM user_table1 WHERE id=(:id)")
     fun getUser(id: Int): LiveData<User?>
 
-    @Query("SELECT * FROM user_table WHERE Username=(:name)")
+    @Transaction
+    @Query("SELECT * FROM user_table1 WHERE Username=(:name)")
     fun getUserByUsername(name: String): LiveData<List<User>>
 
-    @Query("SELECT * FROM user_table WHERE Email=(:email)")
+  /*  @Transaction
+    @Query("SELECT id FROM user_table1 WHERE Email=(:email)")
+    fun getUserIdByEmail(email: String): LiveData<List<User>>*/
+
+    @Transaction
+    @Query("SELECT * FROM user_table1 WHERE Email=(:email)")
     fun getUserByEmail(email: String): LiveData<List<User>>
+
+    @Transaction
+    @Query("SELECT * from favoris_table1 ORDER BY id ASC")
+    fun getFavoris(): LiveData<List<Favoris>>
+
+
+    @Transaction
+    @Query("SELECT * from UserFavorisCrossRef ORDER BY UserId ASC")
+    fun getUserFavorisCrossRef(): LiveData<List<UserFavorisCrossRef>>
+
+
+
+
+
 
 
 }

@@ -32,7 +32,7 @@
     <string name="BoutonEnregistrer">S\'enregistrer</string>
     <string name="ConfirmerMotDePasse">Confirmer mot de passe</string>
     <string name="SeConnecter">Se connecter</string>
-    <string name="UserEmail">Nom d\'utilisateur ou Courriel</string>
+    <string name="UserEmail">Courriel</string>
 
 
 </resources>

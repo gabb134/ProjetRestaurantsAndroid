@@ -6,10 +6,16 @@ import androidx.room.Database
 
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import kotlinx.coroutines.CoroutineScope
 
 
-@Database(entities = arrayOf(User::class), version = 1, exportSchema = false)
+@Database(
+    entities = [
+        User::class,
+        Favoris::class,
+        UserFavorisCrossRef::class
+    ],
+    version = 1
+)
 abstract class UserRoomDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
     companion object {
@@ -17,7 +23,7 @@ abstract class UserRoomDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: UserRoomDatabase? = null
 
-        fun getDatabase( context: Context,  viewModelScope: CoroutineScope): UserRoomDatabase {
+        fun getDatabase(context: Context): UserRoomDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -25,7 +31,7 @@ abstract class UserRoomDatabase: RoomDatabase() {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 UserRoomDatabase::class.java,
-                "user_database"
+                "user_database3"
             ).build()
             return INSTANCE as UserRoomDatabase
         }

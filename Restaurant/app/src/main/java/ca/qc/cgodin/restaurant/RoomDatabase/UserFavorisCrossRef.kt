@@ -2,8 +2,8 @@ package ca.qc.cgodin.restaurant.RoomDatabase
 
 import androidx.room.Entity
 
-@Entity(primaryKeys = ["UserId","FavorisId"])
-data class UserFavorisCrossRef (
+@Entity(primaryKeys = ["UserId","RestoId"])
+data class UserFavorisCrossRef(
     val UserId:Int,
-    val FavorisId:Int
+    val RestoId: Long
 )

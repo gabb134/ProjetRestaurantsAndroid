@@ -6,10 +6,14 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import ca.qc.cgodin.restaurant.NearbySearch.NearbyRestoActivity
+import ca.qc.cgodin.restaurant.NearbySearch.RestoDetailsAdapter
 import ca.qc.cgodin.restaurant.R
 import ca.qc.cgodin.restaurant.RoomDatabase.User
 import ca.qc.cgodin.restaurant.RoomDatabase.UserViewModel
 import ca.qc.cgodin.restaurant.RoomDatabase.UserViewModelFactory
+import ca.qc.cgodin.restaurant.ui.RestoViewModel
+import ca.qc.cgodin.restaurant.ui.RestoViewModelProviderFactory
 import kotlinx.android.synthetic.main.activity_new_user.*
 
 class NewUserActivity : AppCompatActivity() {
@@ -18,9 +22,12 @@ class NewUserActivity : AppCompatActivity() {
         ViewModelProvider(this, UserViewModelFactory(application)).get(UserViewModel::class.java)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_user)
+
+
 
         btnEnregistrer.setOnClickListener {
             Enregistrer()
@@ -41,8 +48,9 @@ class NewUserActivity : AppCompatActivity() {
         )
 
         if(inputCheck(username,password,confirmPassword,email)){
-            if(password == confirmPassword){
+            if(password == confirmPassword){ //envoyer avec un intent le id de lutulisateur courrent
                 userViewModel.insert(user)
+
 
                 val intent = Intent(this, SignInActivity::class.java)
                 startActivity(intent)
