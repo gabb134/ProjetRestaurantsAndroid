@@ -162,10 +162,6 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
             val favoris = Favoris(restaurant.restaurant.R.res_id.toLong())
             if (favoris != null) {
 
-
-                //  onItem1ClickListener(favoris)
-                //val id = intent.getIntArrayExtra("idUser")
-
                 viewModel.insertFavoris(favoris)
                 val crossRef = UserFavorisCrossRef(idUserConnection, favoris.RestoId) // voir comment obtenir le id de la personne qui a ajoute un resto dans ses favoris
                 viewModel.insertUserFavorisCrossRef(crossRef)
@@ -200,11 +196,7 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
     }
 
 
-    private fun startCall(context: Context, phoneNumbers: String) {
-        val callIntent = Intent(Intent.ACTION_CALL)
-        callIntent.data = Uri.parse("tel:$phoneNumbers")
-        context.startActivity(callIntent)
-    }
+
     private fun sendSMS(context: Context, phoneNumbers: String) {
 
         val text = "Message"

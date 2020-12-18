@@ -73,24 +73,6 @@
         app:layout_constraintVertical_bias="0.086" />
 
     <Button
-        android:id="@+id/btnRayon"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="183dp"
-        android:layout_height="35dp"
-
-        android:backgroundTint="#9C27B0"
-        android:text="Recherche par rayon"
-        android:textColorHighlight="#673AB7"
-        android:textColorLink="#673AB7"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02" />
-
-    <Button
         android:id="@+id/btnPageSuivant"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="99dp"
@@ -103,10 +85,10 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.961" />
 
     <Button
         android:id="@+id/btnPagePrecedent"
@@ -115,30 +97,31 @@
         android:layout_height="35dp"
 
         android:backgroundTint="#9C27B0"
+        android:enabled="false"
         android:text="Page precedent"
         android:textColorHighlight="#673AB7"
         android:textColorLink="#673AB7"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.961" />
 
     <Button
         android:id="@+id/btnType"
-        android:layout_width="183dp"
-        android:layout_height="35dp"
+        android:layout_width="180dp"
+        android:layout_height="55dp"
         android:backgroundTint="#9C27B0"
         android:text="Recherche par type"
         android:textColor="@color/cardview_light_background"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.036" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

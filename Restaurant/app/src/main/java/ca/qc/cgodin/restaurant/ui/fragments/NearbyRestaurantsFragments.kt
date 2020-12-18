@@ -1,6 +1,7 @@
 package ca.qc.cgodin.restaurant.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -29,6 +30,8 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
     lateinit var viewModel: RestoViewModel
     lateinit var restoAdapter: RestoAdapter
     var intPage = 0;
+    var intNbItem = 0;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
 
         //Toast.makeText(context,"Id user dans NerbyRestaurantsFragments : ${param1}", Toast.LENGTH_LONG).show()
         setupRC(viewModel)
-        setupBtnSuivantPrecedent()
+        //setupBtnSuivantPrecedent()
 
 
         restoAdapter.setOnItemClickListener {
@@ -72,6 +75,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
 
 
         btnType.setOnClickListener {
+            Log.i("Nb",restoAdapter.itemCount.toString())
             if(etTypeResto.toString().isNotEmpty()) {
 
             viewModel.getSearchByName(etTypeResto.text.toString(),etRayonResto.text.toString(),"0")
@@ -79,10 +83,14 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
                 viewLifecycleOwner,
                 Observer { response ->
                     restoAdapter.setDetailsMenuResto(response.restaurants)
+                    intNbItem = response.results_shown
+                    setupBtnSuivantPrecedent()
                 }
             )
+
+
         }
-            setupBtnSuivantPrecedent()
+
 
         }
 
@@ -95,6 +103,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
                     restoAdapter.setDetailsMenuResto(response.restaurants)
                 }
             )
+
             setupBtnSuivantPrecedent()
 
         }
@@ -113,12 +122,6 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
 
 
     }
-
-
-
-
-
-
         private fun setupBtnSuivantPrecedent(){
             if(intPage == 0){
                 btnPagePrecedent.isEnabled = false
@@ -127,14 +130,24 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
                 btnPagePrecedent.isEnabled = true
                 btnPagePrecedent.isClickable = true
             }
-            if(intPage == 80){
+            Log.i("Nb","${intNbItem}")
+            if(intNbItem < 20){
                 btnPageSuivant.isEnabled = false
                 btnPageSuivant.isClickable = false
+            }else{
+                if(intPage == 80){
+                    btnPageSuivant.isEnabled = false
+                    btnPageSuivant.isClickable = false
+                }
+                else{
+                    btnPageSuivant.isEnabled = true
+                    btnPageSuivant.isClickable = true
+                }
+
             }
-            else{
-                btnPageSuivant.isEnabled = true
-                btnPageSuivant.isClickable = true
-            }
+
+
+
         }
     private fun setupRC(viewModel: RestoViewModel){
         restoAdapter = RestoAdapter()

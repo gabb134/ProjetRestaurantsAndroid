@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import ca.qc.cgodin.restaurant.RoomDatabase.*
 import ca.qc.cgodin.restaurant.modeleDetailsZomato.DetailResto
 import ca.qc.cgodin.restaurant.modeleMenu.Menu
@@ -14,6 +13,7 @@ import ca.qc.cgodin.restaurant.repository.RestaurantRepository
 import kotlinx.coroutines.launch
 import ca.qc.cgodin.restaurant.modeleSearchZomato.SearchInfo
 import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.viewModelScope
 
 
 class RestoViewModel(private val  restaurantRepository: RestaurantRepository)  : ViewModel() {
