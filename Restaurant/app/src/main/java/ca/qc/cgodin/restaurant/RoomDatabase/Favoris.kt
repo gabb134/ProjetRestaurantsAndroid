@@ -2,6 +2,7 @@ package ca.qc.cgodin.restaurant.RoomDatabase
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ca.qc.cgodin.restaurant.modeleSearchZomato.Restaurant
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 

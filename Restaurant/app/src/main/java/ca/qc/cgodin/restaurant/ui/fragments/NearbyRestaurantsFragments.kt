@@ -74,6 +74,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
 
         viewModel.searchVal.observe(viewLifecycleOwner, Observer { response ->
             restoAdapter.setDetailsMenuResto(response.restaurants)
+            intNbItem = response.results_shown
         })
 
 
@@ -84,9 +85,10 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
             viewModel.getSearchByName(etTypeResto.text.toString(),etRayonResto.text.toString(),"0")
             viewModel.searchVal.observe(
                 viewLifecycleOwner,
-                Observer { response ->
+                { response ->
                     restoAdapter.setDetailsMenuResto(response.restaurants)
                     intNbItem = response.results_shown
+                    intPage = 0;
                     setupBtnSuivantPrecedent()
                 }
             )
@@ -126,6 +128,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
 
     }
         private fun setupBtnSuivantPrecedent(){
+            Log.i("intPage","${intPage}")
             if(intPage == 0){
                 btnPagePrecedent.isEnabled = false
                 btnPagePrecedent.isClickable = false
@@ -133,7 +136,7 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
                 btnPagePrecedent.isEnabled = true
                 btnPagePrecedent.isClickable = true
             }
-            Log.i("Nb","${intNbItem}")
+
             if(intNbItem < 20){
                 btnPageSuivant.isEnabled = false
                 btnPageSuivant.isClickable = false

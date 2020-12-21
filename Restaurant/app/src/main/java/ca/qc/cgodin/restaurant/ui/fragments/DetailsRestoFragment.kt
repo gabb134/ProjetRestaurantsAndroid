@@ -76,8 +76,6 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
             Toast.makeText(context,"favoris a été ajouté dans la BD", Toast.LENGTH_LONG).show()
         }*/
 
-
-
         setupRC(viewModel,idUserConnection)
 
         val restaurant = args.Restaurant
@@ -160,7 +158,7 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
             Toast.makeText(context, "Favoris 2!! ${restaurant.restaurant.id}", Toast.LENGTH_SHORT).show()
 
             val favoris = Favoris(restaurant.restaurant.R.res_id.toLong(),restaurant.restaurant.location.address,restaurant.restaurant.name,restaurant.restaurant.user_rating.rating_text,
-                restaurant.restaurant.user_rating.aggregate_rating.toString().toFloat(),restaurant.restaurant.url,restaurant.restaurant.phone_numbers,restaurant.restaurant.location.latitude.toDouble(),
+                restaurant.restaurant.user_rating.aggregate_rating.toString().toFloat(),restaurant.restaurant.featured_image,restaurant.restaurant.phone_numbers,restaurant.restaurant.location.latitude.toDouble(),
                 restaurant.restaurant.location.longitude.toDouble())
             if (favoris != null) {
 

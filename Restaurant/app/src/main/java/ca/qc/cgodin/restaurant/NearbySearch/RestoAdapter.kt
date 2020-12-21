@@ -28,7 +28,6 @@ class RestoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var nearbySearch: List<Result> = emptyList()
 
-    private var favoris : List<Favoris> = emptyList()
 
     private var search: List<Restaurant> = emptyList()
 
@@ -81,10 +80,7 @@ class RestoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setfavoris(favoris: List<Favoris>) {
-        this.favoris = favoris
-        notifyDataSetChanged()
-    }
+
 
 
 }

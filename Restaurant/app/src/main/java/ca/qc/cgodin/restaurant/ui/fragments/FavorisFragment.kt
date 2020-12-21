@@ -24,7 +24,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FavorisFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FavorisFragment : Fragment() {
+class FavorisFragment : Fragment(R.layout.fragment_favoris) {
     lateinit var favorisAdapter: FavorisAdapter
              var idUserConnection = 0;
     lateinit var viewModel: RestoViewModel
@@ -50,11 +50,11 @@ class FavorisFragment : Fragment() {
         viewModel= (activity as NearbyRestoActivity).viewModel
         idUserConnection = (activity as NearbyRestoActivity).idUser
 
-        restoAdapter = RestoAdapter()
-        rcRestoFavoris.adapter = restoAdapter
+        favorisAdapter = FavorisAdapter()
+        rcRestoFavoris.adapter = favorisAdapter
         viewModel.allFavoris.observe(
             viewLifecycleOwner, Observer {
-                favoriss-> restoAdapter.setfavoris(favoriss)
+                favoriss-> favorisAdapter.setfavoris(favoriss)
             }
         )
 

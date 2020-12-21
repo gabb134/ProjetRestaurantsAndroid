@@ -1,5 +1,5 @@
 package ca.qc.cgodin.restaurant.modeleDetail
 
-data class Review(
-    val review: List<Any>
+data class Title(
+    val text: String
 )
