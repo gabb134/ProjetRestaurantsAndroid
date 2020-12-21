@@ -1,5 +1,6 @@
 package ca.qc.cgodin.restaurant.ui.fragments
 
+import android.content.Intent.getIntent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -40,6 +41,8 @@ class NearbyRestaurantsFragments : Fragment(R.layout.restaurant) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= (activity as NearbyRestoActivity).viewModel
+
+
 
 
         arguments?.let {

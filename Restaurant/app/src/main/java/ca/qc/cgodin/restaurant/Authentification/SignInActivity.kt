@@ -256,8 +256,19 @@ class SignInActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
+                    val usernameGoogle = mAuth.currentUser?.displayName.toString()
+                    val emailGoogle = mAuth.currentUser?.email.toString()
+
+                    val intent = Intent(this, NearbyRestoActivity::class.java)
+
+                    //intent.putExtra("usernameGoogle",usernameGoogle)
+                    //intent.putExtra("emailGoogle",emailGoogle)
+
+
+
+
                     //Il faut ajouter le user Google dans la table user
-                   /* val user = User(
+                    val user = User(
                         0,
                         mAuth.currentUser?.displayName.toString(),
                         "",
@@ -268,11 +279,12 @@ class SignInActivity : AppCompatActivity() {
                         applicationContext,
                         "User Google a ete ajoute dans la BD",
                         Toast.LENGTH_SHORT
-                    ).show()*/
+                    ).show()
 
-                    val intent = Intent(this, NearbyRestoActivity::class.java)
+
                     startActivity(intent)
                     finish()
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.i("SignInActivity", "signInWithCredential:failure", task.exception)
@@ -302,19 +314,7 @@ class SignInActivity : AppCompatActivity() {
                     val user = mAuth.currentUser
                         updateUI(user)
 
-                    //Il faut ajouter le user Facebook dans la table user
-                  /*  val user1 = User(
-                        0,
-                        mAuth.currentUser?.displayName.toString(),
-                        "",
-                        mAuth.currentUser?.email.toString()
-                    )
-                    userViewModel.insert(user1)
-                    Toast.makeText(
-                        applicationContext,
-                        "User Facebook a ete ajoute dans la BD",
-                        Toast.LENGTH_SHORT
-                    ).show()*/
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("FacebookLogin", "signInWithCredential:failure", task.exception)
@@ -331,8 +331,29 @@ class SignInActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if(user!=null){
+
+            val usernameFacebook = user?.displayName.toString()
+            val emailFacebook = user?.email.toString()
+
             val intent = Intent(this, NearbyRestoActivity::class.java)
+
+          //  intent.putExtra("usernameFacebook",usernameFacebook)
+            //intent.putExtra("emailFacebook",emailFacebook)
+            //Il faut ajouter le user Facebook dans la table user
+              val user1 = User(
+                  0,
+                  user?.displayName.toString(),
+                  "",
+                  user?.email.toString()
+              )
+              userViewModel.insert(user1)
+              Toast.makeText(
+                  applicationContext,
+                  "User Facebook a ete ajoute dans la BD",
+                  Toast.LENGTH_SHORT
+              ).show()
             startActivity(intent)
+
             finish()
         }else{
             Toast.makeText(this, "Login pour continuer", Toast.LENGTH_SHORT).show()

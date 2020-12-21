@@ -1,5 +1,6 @@
 package ca.qc.cgodin.restaurant.NearbySearch
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ca.qc.cgodin.restaurant.R
+import ca.qc.cgodin.restaurant.RoomDatabase.User
 import ca.qc.cgodin.restaurant.RoomDatabase.UserDao
 import ca.qc.cgodin.restaurant.RoomDatabase.UserRoomDatabase
 import ca.qc.cgodin.restaurant.repository.RestaurantRepository
@@ -37,7 +39,10 @@ class NearbyRestoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNavigationView.setupWithNavController(navHostFragmentContainer.findNavController())
+
+
+
+            bottomNavigationView.setupWithNavController(navHostFragmentContainer.findNavController())
         val userDao : UserDao = UserRoomDatabase.getDatabase(application).userDao()
         val repository = RestaurantRepository(userDao)
         val viewModelProviderFactory = RestoViewModelProviderFactory(repository)
@@ -55,6 +60,56 @@ class NearbyRestoActivity : AppCompatActivity() {
         val intent = getIntent()
 
         idUser = intent.getIntExtra("idUser",-1)
+
+
+        //Ajout du compte google dans la BD
+    /*    val intent1 = getIntent()
+        val usernameGoogle = intent1.getStringExtra("usernameGoogle")
+        val emailGoogle = intent1.getStringExtra("emailGoogle")
+
+        val userGoogle = User(
+            0,
+            usernameGoogle.toString(),
+            "",
+            emailGoogle.toString()
+        )
+        viewModel.searchUser(emailGoogle.toString()).observe(
+                this, {
+                users -> users.let{
+                    if(it.isEmpty()){
+                        viewModel.insert(userGoogle)
+                        Toast.makeText(applicationContext, "Ce compte Google vient d'etre ajoute dans la BD", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(applicationContext, "Ce compte Google se trouve deja dans la BD", Toast.LENGTH_SHORT).show()
+                    }
+            }})
+
+        //Ajout du compte facebook dans la BD
+        val intent2 = getIntent()
+
+        val usernameFacebook = intent2.getStringExtra("usernameFacebook")
+        val emailFacebook = intent2.getStringExtra("usernameFacebook")
+
+        val userFacebook = User(
+            0,
+            usernameFacebook.toString(),
+            "",
+            emailFacebook.toString()
+        )
+
+        viewModel.searchUser(emailFacebook.toString()).observe(
+            this, {
+                    users -> users.let{
+                if(it.isEmpty()){
+                    viewModel.insert(userGoogle)
+                    Toast.makeText(applicationContext, "Ce compte Facebook vient d'etre ajoute dans la BD", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(applicationContext, "Ce compte Facebook se trouve deja dans la BD", Toast.LENGTH_SHORT).show()
+                }
+            }})*/
+
+
+
 
 
 

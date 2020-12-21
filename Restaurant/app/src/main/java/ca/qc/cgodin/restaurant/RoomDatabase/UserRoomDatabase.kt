@@ -31,7 +31,7 @@ abstract class UserRoomDatabase: RoomDatabase() {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 UserRoomDatabase::class.java,
-                "userFav_database2"
+                "userFav_database5"
             ).build()
             return INSTANCE as UserRoomDatabase
         }
