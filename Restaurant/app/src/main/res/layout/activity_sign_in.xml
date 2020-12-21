@@ -131,7 +131,7 @@
         android:ems="10"
         android:hint="@string/MotDePasse"
         android:inputType="textPassword"
-        android:text="Pass"
+        android:text="Password1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

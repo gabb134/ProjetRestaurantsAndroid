@@ -159,7 +159,9 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
         fabFavoris2.setOnClickListener {
             Toast.makeText(context, "Favoris 2!! ${restaurant.restaurant.id}", Toast.LENGTH_SHORT).show()
 
-            val favoris = Favoris(restaurant.restaurant.R.res_id.toLong())
+            val favoris = Favoris(restaurant.restaurant.R.res_id.toLong(),restaurant.restaurant.location.address,restaurant.restaurant.name,restaurant.restaurant.user_rating.rating_text,
+                restaurant.restaurant.user_rating.aggregate_rating.toString().toFloat(),restaurant.restaurant.url,restaurant.restaurant.phone_numbers,restaurant.restaurant.location.latitude.toDouble(),
+                restaurant.restaurant.location.longitude.toDouble())
             if (favoris != null) {
 
                 viewModel.insertFavoris(favoris)
@@ -194,7 +196,11 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
     }
 
     }
-
+    private fun startCall(context: Context, phoneNumbers: String) {
+        val callIntent = Intent(Intent.ACTION_CALL)
+        callIntent.data = Uri.parse("tel:$phoneNumbers")
+        context.startActivity(callIntent)
+    }
 
 
     private fun sendSMS(context: Context, phoneNumbers: String) {

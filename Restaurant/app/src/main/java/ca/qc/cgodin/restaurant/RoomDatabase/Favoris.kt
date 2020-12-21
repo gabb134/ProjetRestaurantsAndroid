@@ -9,6 +9,14 @@ import java.io.Serializable
 data class Favoris(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name="id")
-    val RestoId: Long
+    val RestoId: Long,
+    val adresse:String,
+    val title:String,
+    val publishedAt:String,
+    val rating:Float,
+    val url:String,
+    val phone:String,
+    val latitude:Double,
+    val longitude:Double
     )
 

@@ -42,7 +42,7 @@ class FavorisFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_favoris, container, false)
     }
 
- /*   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {      super.onViewCreated(view, savedInstanceState)
+   /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {      super.onViewCreated(view, savedInstanceState)
         viewModel= (activity as NearbyRestoActivity).viewModel
         idUserConnection = (activity as NearbyRestoActivity).idUser
 
@@ -61,14 +61,14 @@ class FavorisFragment : Fragment() {
             }
 
         })
-        Log.i("FAVORIS","${viewModel.detailsFav[0].value}")
-        favorisAdapter.setDetails(viewModel.detailsFav)
+     //   Log.i("FAVORIS","${viewModel.detailsFav[0].value}")
+       // favorisAdapter.setDetails(viewModel.detailsFav)
 
 
 
 
 
 
-    }
-*/
+    }*/
+
 }

@@ -257,7 +257,18 @@ class SignInActivity : AppCompatActivity() {
                     ).show()
 
                     //Il faut ajouter le user Google dans la table user
-
+                   /* val user = User(
+                        0,
+                        mAuth.currentUser?.displayName.toString(),
+                        "",
+                        mAuth.currentUser?.email.toString()
+                    )
+                    userViewModel.insert(user)
+                    Toast.makeText(
+                        applicationContext,
+                        "User Google a ete ajoute dans la BD",
+                        Toast.LENGTH_SHORT
+                    ).show()*/
 
                     val intent = Intent(this, NearbyRestoActivity::class.java)
                     startActivity(intent)
@@ -292,7 +303,18 @@ class SignInActivity : AppCompatActivity() {
                         updateUI(user)
 
                     //Il faut ajouter le user Facebook dans la table user
-
+                  /*  val user1 = User(
+                        0,
+                        mAuth.currentUser?.displayName.toString(),
+                        "",
+                        mAuth.currentUser?.email.toString()
+                    )
+                    userViewModel.insert(user1)
+                    Toast.makeText(
+                        applicationContext,
+                        "User Facebook a ete ajoute dans la BD",
+                        Toast.LENGTH_SHORT
+                    ).show()*/
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("FacebookLogin", "signInWithCredential:failure", task.exception)
