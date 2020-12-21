@@ -46,11 +46,11 @@ class FavorisAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             tvSource.text = favoris[position].adresse;
             place_id.text = favoris[position].RestoId.toString();
             tvPublishedAt.text = favoris[position].phone;
-            tvPublishedAt.text = favoris[position].phone;
+          //  tvPublishedAt.text = favoris[position].phone;
             Glide.with(this).load(favoris[position].url).into(ivRestoImage)
 
 
-         //   var resto = RestaurantX(name = favoris[position].title);
+
             setOnClickListener {
           //      onItemClickListener?.let { it(search[position]) }
             }

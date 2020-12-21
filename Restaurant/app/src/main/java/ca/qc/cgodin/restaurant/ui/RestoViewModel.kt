@@ -63,6 +63,10 @@ class RestoViewModel(private val  restaurantRepository: RestaurantRepository)  :
      fun getFavorisUser(id: Int): LiveData<List<UserFavorisCrossRef>>{
         return restaurantRepository.getFavorisUser(id)
     }
+    fun getFavoris2(id: Int): LiveData<List<Favoris>>{
+        return restaurantRepository.getFavoris2(id)
+    }
+
 
     fun insertUserFavorisCrossRef(userFavorisCrossRef: UserFavorisCrossRef) = viewModelScope.launch(
         Dispatchers.IO){

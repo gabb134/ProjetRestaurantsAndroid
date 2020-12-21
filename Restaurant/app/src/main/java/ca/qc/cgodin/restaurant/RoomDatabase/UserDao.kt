@@ -50,6 +50,14 @@ interface UserDao {
 
 
     @Transaction
+    @Query("SELECT * from favoris_table1 WHERE id=(:id)")
+    fun getFavoris2(id: Int): LiveData<List<Favoris>>
+
+
+
+
+
+    @Transaction
     @Query("SELECT * from UserFavorisCrossRef ORDER BY UserId ASC")
     fun getUserFavorisCrossRef(): LiveData<List<UserFavorisCrossRef>>
 

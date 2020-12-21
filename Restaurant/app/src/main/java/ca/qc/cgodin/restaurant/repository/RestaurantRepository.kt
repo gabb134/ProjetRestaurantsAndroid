@@ -39,6 +39,10 @@ class RestaurantRepository(private val userDao: UserDao) {
         return userDao.getFavoris(id)
     }
 
+    fun getFavoris2(id: Int) :LiveData<List<Favoris>>{
+        return userDao.getFavoris2(id)
+    }
+
 
 
     //suspend fun getNearbyRestaurants(rayon: String) =

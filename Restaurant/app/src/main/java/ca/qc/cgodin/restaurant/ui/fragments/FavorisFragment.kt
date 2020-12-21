@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import ca.qc.cgodin.restaurant.NearbySearch.FavorisAdapter
 import ca.qc.cgodin.restaurant.NearbySearch.NearbyRestoActivity
 import ca.qc.cgodin.restaurant.NearbySearch.RestoAdapter
 import ca.qc.cgodin.restaurant.R
+import ca.qc.cgodin.restaurant.RoomDatabase.Favoris
 import ca.qc.cgodin.restaurant.ui.RestoViewModel
 import kotlinx.android.synthetic.main.fragment_favoris.*
 
@@ -31,6 +33,9 @@ class FavorisFragment : Fragment(R.layout.fragment_favoris) {
 
     private lateinit var  restoAdapter: RestoAdapter
 
+    var comp = 0
+
+    val listFavUser = mutableListOf<Favoris>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,11 +57,38 @@ class FavorisFragment : Fragment(R.layout.fragment_favoris) {
 
         favorisAdapter = FavorisAdapter()
         rcRestoFavoris.adapter = favorisAdapter
-        viewModel.allFavoris.observe(
+      /*  viewModel.allFavoris.observe(
             viewLifecycleOwner, Observer {
                 favoriss-> favorisAdapter.setfavoris(favoriss)
             }
+        )*/
+
+
+        viewModel.getFavorisUser(idUserConnection).observe(
+            viewLifecycleOwner, Observer { it ->
+                for(test in it){
+                    comp++
+                    //Log.i("valursRestoID", it.toString())
+
+                        viewModel.getFavoris2(test.RestoId.toInt()).observe(
+                            viewLifecycleOwner, Observer {
+
+
+                                var fav : Favoris = it.get(0);
+                                listFavUser.addAll(listOf(it[0]));
+                                Log.i("valursRestoID", it.get(0).title)
+                                Log.i("valursRestoID", listFavUser.size.toString())
+                                favorisAdapter.setfavoris(listFavUser)
+                            }
+                        )
+                }
+
+
+                //Toast.makeText(context, "resto id du user couranrt : ${ it.}", Toast.LENGTH_LONG).show()
+            }
         )
+
+
 
 
 

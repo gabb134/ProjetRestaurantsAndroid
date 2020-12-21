@@ -129,7 +129,6 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
                 ) }
             }
 
-
         }
 
         fabSMS2.setOnClickListener{
