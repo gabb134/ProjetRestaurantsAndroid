@@ -8,17 +8,12 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="376dp"
-        android:layout_height="51dp"
-        android:text="@string/Favoris_fragment"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="5dp" />
+>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcRestoFavoris"
         android:layout_width="394dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_height="619dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

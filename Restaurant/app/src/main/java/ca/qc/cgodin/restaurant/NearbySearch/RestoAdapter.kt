@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cgodin.restaurant.R
+import ca.qc.cgodin.restaurant.RoomDatabase.Favoris
 import ca.qc.cgodin.restaurant.modeleSearch.Result
 import ca.qc.cgodin.restaurant.modeleSearchZomato.Restaurant
 import com.bumptech.glide.Glide
@@ -26,6 +27,8 @@ class RestoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     private var nearbySearch: List<Result> = emptyList()
+
+    private var favoris : List<Favoris> = emptyList()
 
     private var search: List<Restaurant> = emptyList()
 
@@ -77,5 +80,11 @@ class RestoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.search = search;
         notifyDataSetChanged()
     }
+
+    fun setfavoris(favoris: List<Favoris>) {
+        this.favoris = favoris
+        notifyDataSetChanged()
+    }
+
 
 }

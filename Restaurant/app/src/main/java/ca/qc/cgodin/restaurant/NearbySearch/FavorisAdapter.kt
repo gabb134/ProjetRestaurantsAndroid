@@ -1,7 +1,10 @@
 package ca.qc.cgodin.restaurant.NearbySearch
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cgodin.restaurant.R
@@ -9,12 +12,32 @@ import ca.qc.cgodin.restaurant.modeleDetailsZomato.DetailResto
 import kotlinx.android.synthetic.main.resto_item.view.*
 
 class FavorisAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+
+
+
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+
+        val tvNameResto: TextView = itemView.findViewById(R.id.tvTitle)
+        val place_id: TextView = itemView.findViewById(R.id.place_id)
+        val tvPhoneNumber: TextView = itemView.findViewById(R.id.tvPublishedAt)
+        val tvAddress: TextView = itemView.findViewById(R.id.tvTitle)
+        val tvImg: ImageView = itemView.findViewById(R.id.ivRestoImage)
+
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_article_preview,parent,false)
+        return RestoAdapter.ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.itemView.apply {
+
+
+        }
     }
 
     override fun getItemCount(): Int {
