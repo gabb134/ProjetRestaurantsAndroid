@@ -24,6 +24,8 @@ import ca.qc.cgodin.restaurant.modeleSearchZomato.Locations
 import ca.qc.cgodin.restaurant.ui.RestoViewModel
 import kotlinx.android.synthetic.main.fragment_details_resto.*
 import kotlinx.android.synthetic.main.restaurant_detail_item.*
+import java.io.IOException
+import java.lang.Exception
 
 private const val ARG_IdUser = "idUserLogin"
 
@@ -112,46 +114,65 @@ class DetailsRestoFragment : Fragment(R.layout.fragment_details_resto){
 
 
         fabCall2.setOnClickListener{
-            if(ActivityCompat.checkSelfPermission(
-                    context as Activity,
-                    android.Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED){
 
-                ActivityCompat.requestPermissions(
-                    context as Activity,
-                    arrayOf(android.Manifest.permission.CALL_PHONE), 1
-                )
-            }else{
+            try{
+                if(ActivityCompat.checkSelfPermission(
+                        context as Activity,
+                        android.Manifest.permission.CALL_PHONE
+                    ) != PackageManager.PERMISSION_GRANTED){
 
-                restaurant.restaurant.phone_numbers?.let { it1 -> startCall(
-                    context as Activity,
-                    it1
-                ) }
+                    ActivityCompat.requestPermissions(
+                        context as Activity,
+                        arrayOf(android.Manifest.permission.CALL_PHONE), 1
+                    )
+                }else{
+
+                    restaurant.restaurant.phone_numbers?.let { it1 -> startCall(
+                        context as Activity,
+                        it1
+                    ) }
+                }
+
+            }catch(e: Exception){
+//code that handles exception
             }
 
         }
 
         fabSMS2.setOnClickListener{
 
-            if(ActivityCompat.checkSelfPermission(
-                    context as Activity,
-                    android.Manifest.permission.SEND_SMS
-                ) != PackageManager.PERMISSION_GRANTED){
+            try{
+                if(ActivityCompat.checkSelfPermission(
+                        context as Activity,
+                        android.Manifest.permission.SEND_SMS
+                    ) != PackageManager.PERMISSION_GRANTED){
 
-                ActivityCompat.requestPermissions(
-                    context as Activity,
-                    arrayOf(android.Manifest.permission.SEND_SMS), 2
-                )
-            }else{
+                    ActivityCompat.requestPermissions(
+                        context as Activity,
+                        arrayOf(android.Manifest.permission.SEND_SMS), 2
+                    )
+                }else{
 
-                restaurant.restaurant.phone_numbers?.let { it1 -> sendSMS(context as Activity, it1) }
+                    restaurant.restaurant.phone_numbers?.let { it1 -> sendSMS(context as Activity, it1) }
+                }
+
+            }catch(e: Exception){
+//code that handles exception
             }
+
+
 
         }
 
         fabWeb.setOnClickListener {
-            val callIntent = Intent(Intent.ACTION_VIEW, Uri.parse(restaurant.restaurant.url))
-            context?.startActivity(callIntent)
+
+            try{
+                val callIntent = Intent(Intent.ACTION_VIEW, Uri.parse(restaurant.restaurant.url))
+                context?.startActivity(callIntent)
+            }catch(e: Exception){
+//code that handles exception
+            }
+
         }
         fabFavoris2.setOnClickListener {
             Toast.makeText(context, "Favoris 2!! ${restaurant.restaurant.id}", Toast.LENGTH_SHORT).show()
